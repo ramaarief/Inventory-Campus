@@ -4,24 +4,24 @@
 <section class="section">
   
   <div class="section-header">
-    <h1>Fakultas <small>Add Data</small></h1>
+    <h1>Barang <small>Add Data</small></h1>
   </div>
 
   <div class="section-body">
     <div class="col-12 col-md-6 col-lg-6">
         <div class="card">
           <div class="card-header">
-            <a href="{{ route('fakultas.index') }}"> 
+            <a href="{{ route('barang.index') }}"> 
               <button type="button" class="btn btn-outline-info">
                 <i class="fas fa-arrow-circle-left"></i> Back
               </button>
           </a>
           </div>
           <div class="card-body">
-            <form action="{{ route('fakultas.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('barang.store') }}" method="POST" enctype="multipart/form-data">
               @csrf
               <div class="form-group">
-                <label>Nama Fakultas</label>
+                <label>Nama Barang</label>
                 <input type="text" name="name" class="form-control" required="">
               </div>
               <div class="form-group">

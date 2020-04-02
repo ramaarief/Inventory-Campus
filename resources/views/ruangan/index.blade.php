@@ -4,7 +4,7 @@
 <section class="section">
   
   <div class="section-header">
-    <h1>Fakultas</h1>
+    <h1>Ruangan</h1>
   </div>
 
   <div class="section-body">
@@ -19,12 +19,12 @@
                 <button type="submit" class="btn btn-primary">Search</button>
               </div>
             </form>
-            <a href="{{ route('fakultas.index') }}" class="pull-right">
+            <a href="{{ route('ruangan.index') }}" class="pull-right">
               <button type="button" class="btn btn-info">All Data</button>
             </a>
           </div>
           <div class="card-header">
-            <a href="{{ route('fakultas.create') }}">
+            <a href="{{ route('ruangan.create') }}">
               <button type="button" class="btn btn-primary">Add New</button>
             </a>
           </div>
@@ -33,21 +33,21 @@
               <thead>
                 <tr>
                   <th scope="col">No</th>
-                  <th scope="col">Nama Fakultas</th>
+                  <th scope="col">Nama Ruangan</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody>
-               @forelse($fakultas as $fs)
+               @forelse($ruangan as $rg)
                 <tr>
-                  <td>{{ $fs->id }}</td>
-                  <td>{{ $fs->name }}</td>
+                  <td>{{ $rg->id }}</td>
+                  <td>{{ $rg->name }}</td>
                   <td>
-                    <a href="{{ route('fakultas.edit', ['id' => $fs->id]) }}">
+                    <a href="{{ route('ruangan.edit', ['id' => $rg->id]) }}">
                       <button type="button" class="btn btn-sm btn-info">Edit</button>
                     </a>
 
-                    <a href="{{ route('fakultas.delete', ['id' => $fs->id]) }}"
+                    <a href="{{ route('ruangan.delete', ['id' => $rg->id]) }}"
                       onclick="return confirm('Delete data?');" 
                       >
                       <button type="button" class="btn btn-sm btn-danger">Hapus</button>
@@ -61,10 +61,10 @@
                 @endforelse
               </tbody>
             </table>
-            Jumlah Data Fakultas =
-            {{ $fakultas->total() }}
+            Jumlah Data Ruangan =
+            {{ $ruangan->total() }}
             <h6 class="page-title">Page Number</h6>
-                        {{ $fakultas->links() }}
+                        {{ $ruangan->links() }}
           </div>
           <div class="card-footer text-right">
             <nav class="d-inline-block">
