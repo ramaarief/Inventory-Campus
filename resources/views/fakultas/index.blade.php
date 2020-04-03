@@ -38,16 +38,16 @@
                 </tr>
               </thead>
               <tbody>
-               @forelse($fakultas as $fs)
+               @forelse($fakultas as $fs => $hasil)
                 <tr>
-                  <td>{{ $fs->id }}</td>
-                  <td>{{ $fs->name }}</td>
+                  <td>{{ $fs + $fakultas->firstitem() }}</td>
+                  <td>{{ $hasil->name }}</td>
                   <td>
-                    <a href="{{ route('fakultas.edit', ['id' => $fs->id]) }}">
+                    <a href="{{ route('fakultas.edit', ['id' => $hasil->id]) }}">
                       <button type="button" class="btn btn-sm btn-info">Edit</button>
                     </a>
 
-                    <a href="{{ route('fakultas.delete', ['id' => $fs->id]) }}"
+                    <a href="{{ route('fakultas.delete', ['id' => $hasil->id]) }}"
                       onclick="return confirm('Delete data?');" 
                       >
                       <button type="button" class="btn btn-sm btn-danger">Hapus</button>

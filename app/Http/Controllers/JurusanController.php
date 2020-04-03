@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Jurusan;
+use App\Fakultas;
 
 class JurusanController extends Controller
 {
@@ -14,13 +15,14 @@ class JurusanController extends Controller
      */
     public function index(Request $request)
     {
+        $fakultas = Fakultas::all();
         $jurusan = Jurusan::when($request->search, function($query) use($request){
             $query->join('fakultas', 'jurusan.fakultas_id', '=', 'fakultas.id')
                   ->where('fakultas.name', 'LIKE', '%'.$request->search)
-                  ->select('jurusan.id', 'fakultas.name', 'jurusan.nama_jurusan');
+                  ->select('jurusan.*', 'fakultas.name');
         })->paginate(3);
 
-        return view('jurusan.index', compact('jurusan'));
+        return view('jurusan.index', compact('jurusan', 'fakultas'));
     }
 
     /**
@@ -30,7 +32,8 @@ class JurusanController extends Controller
      */
     public function create()
     {
-        return view('jurusan.create');
+        $fakultas = Fakultas::all();
+        return view('jurusan.create', compact('fakultas'));
     }
 
     /**
@@ -41,7 +44,10 @@ class JurusanController extends Controller
      */
     public function store(Request $request)
     {
-        Jurusan::create(['nama_jurusan' => $request->name]);
+        Jurusan::create([
+            'fakultas_id' => $request->fakultas_id,
+            'nama_jurusan' => $request->name
+        ]);
         
         return redirect()->route('jurusan.index');
     }
@@ -65,9 +71,10 @@ class JurusanController extends Controller
      */
     public function edit($id)
     {
+        $fakultas = Fakultas::all();
          $jurusan = Jurusan::find($id);
 
-        return view('jurusan.edit', compact('jurusan'));
+        return view('jurusan.edit', compact('jurusan', 'fakultas'));
     }
 
     /**
@@ -79,7 +86,10 @@ class JurusanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Jurusan::whereId($id)->update(['nama_jurusan' => $request->name]);
+        Jurusan::whereId($id)->update([
+            'fakultas_id' => $request->fakultas_id,
+            'nama_jurusan' => $request->name
+        ]);
 
         return redirect()->route('jurusan.index');
     }

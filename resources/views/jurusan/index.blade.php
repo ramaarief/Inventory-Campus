@@ -33,21 +33,29 @@
               <thead>
                 <tr>
                   <th scope="col">No</th>
+                  <th scope="col">Nama Fakultas</th>
                   <th scope="col">Nama Jurusan</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody>
-               @forelse($jurusan as $js)
+               @forelse($jurusan as $js => $hasil)
                 <tr>
-                  <td>{{ $js->id }}</td>
-                  <td>{{ $js->nama_jurusan }}</td>
+                  <td>{{ $js + $jurusan->firstitem() }}</td>
                   <td>
-                    <a href="{{ route('jurusan.edit', ['id' => $js->id]) }}">
+                    @foreach($fakultas as $fs)
+                        @if($hasil->fakultas_id == $fs->id)
+                          {{ $fs->name }}
+                        @endif
+                      @endforeach
+                  </td>
+                  <td>{{ $hasil->nama_jurusan }}</td>
+                  <td>
+                    <a href="{{ route('jurusan.edit', ['id' => $hasil->id]) }}">
                       <button type="button" class="btn btn-sm btn-info">Edit</button>
                     </a>
 
-                    <a href="{{ route('jurusan.delete', ['id' => $js->id]) }}"
+                    <a href="{{ route('jurusan.delete', ['id' => $hasil->id]) }}"
                       onclick="return confirm('Delete data?');" 
                       >
                       <button type="button" class="btn btn-sm btn-danger">Hapus</button>

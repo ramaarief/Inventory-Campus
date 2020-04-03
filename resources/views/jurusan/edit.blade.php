@@ -22,7 +22,14 @@
           <div class="card-body">
             <form action="{{ route('jurusan.update', ['jurusan' => $jurusan->id]) }}" method="post" enctype="multipart/form-data">
               @method('patch')
-              @csrf   
+              @csrf
+              <div class="form-group">
+                <select name="fakultas_id" class="form-control" required="">
+                  @foreach($fakultas as $fs)
+                  <option value="{{ $fs->id }}" {{ ($jurusan->fakultas_id == $fs->id) ? 'selected' : ''}}>{{ $fs->name }}</option>
+                  @endforeach
+                </select>
+              </div>   
               <div class="form-group">
                 <label>Nama Jurusan</label>
                 <input type="text" name="name" class="form-control" value="{{ $jurusan->nama_jurusan }}" required="">

@@ -21,6 +21,14 @@
             <form action="{{ route('jurusan.store') }}" method="POST" enctype="multipart/form-data">
               @csrf
               <div class="form-group">
+                <label>Nama Fakultas</label>
+                <select name="fakultas_id" class="form-control" required="">
+                  @foreach($fakultas as $fs)
+                  <option value="{{$fs->id}}">{{$fs->name}}</option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="form-group">
                 <label>Nama Jurusan</label>
                 <input type="text" name="name" class="form-control" required="">
               </div>

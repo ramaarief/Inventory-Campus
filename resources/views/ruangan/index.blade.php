@@ -38,16 +38,16 @@
                 </tr>
               </thead>
               <tbody>
-               @forelse($ruangan as $rg)
+               @forelse($ruangan as $rg => $hasil)
                 <tr>
-                  <td>{{ $rg->id }}</td>
-                  <td>{{ $rg->name }}</td>
+                  <td>{{ $rg + $ruangan->firstitem() }}</td>
+                  <td>{{ $hasil->name }}</td>
                   <td>
-                    <a href="{{ route('ruangan.edit', ['id' => $rg->id]) }}">
+                    <a href="{{ route('ruangan.edit', ['id' => $hasil->id]) }}">
                       <button type="button" class="btn btn-sm btn-info">Edit</button>
                     </a>
 
-                    <a href="{{ route('ruangan.delete', ['id' => $rg->id]) }}"
+                    <a href="{{ route('ruangan.delete', ['id' => $hasil->id]) }}"
                       onclick="return confirm('Delete data?');" 
                       >
                       <button type="button" class="btn btn-sm btn-danger">Hapus</button>
