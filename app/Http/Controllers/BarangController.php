@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Barang;
+use App\Ruangan;
+use App\User;
 
 class BarangController extends Controller
 {
@@ -14,11 +16,14 @@ class BarangController extends Controller
      */
     public function index(Request $request)
     {
+        $ruangan = Ruangan::all();
+        $user = User::all();
+
         $barang = Barang::when($request->search, function($query) use($request){
             $query->where('name', 'LIKE', '%'.$request->search);
         })->paginate(4);
 
-        return view('barang.index', compact('barang'));
+        return view('barang.index', compact('barang', 'ruangan', 'user'));
     }
 
     /**
@@ -28,7 +33,8 @@ class BarangController extends Controller
      */
     public function create()
     {
-        return view('barang.create');
+        $ruangan = Ruangan::all();
+        return view('barang.create', compact('ruangan'));
     }
 
     /**
@@ -39,7 +45,13 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        Barang::create(['name' => $request->name]);
+        Barang::create([
+            'ruangan_id' => $request->ruangan_id,
+            'name' => $request->name,
+            'total' => $request->total,
+            'broken' => $request->broken,
+            'created_by' => $request->created_by
+        ]);
         
         return redirect()->route('barang.index');
     }
@@ -63,9 +75,10 @@ class BarangController extends Controller
      */
     public function edit($id)
     {
+        $ruangan = Ruangan::all();
         $barang = Barang::find($id);
 
-        return view('barang.edit', compact('barang'));
+        return view('barang.edit', compact('barang', 'ruangan'));
     }
 
     /**
@@ -77,7 +90,14 @@ class BarangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Barang::whereId($id)->update(['name' => $request->name]);
+        Barang::whereId($id)->update([
+            'ruangan_id' => $request->ruangan_id,
+            'name' => $request->name,
+            'total' => $request->total,
+            'broken' => $request->broken,
+            'created_by' => $request->created_by,
+            'updated_by' => $request->updated_by
+        ]);
 
         return redirect()->route('barang.index');
     }

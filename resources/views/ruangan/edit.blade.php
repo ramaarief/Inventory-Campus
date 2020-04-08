@@ -24,6 +24,13 @@
               @method('patch')
               @csrf   
               <div class="form-group">
+                <select name="jurusan_id" class="form-control" required="">
+                  @foreach($jurusan as $js)
+                  <option value="{{ $js->id }}" {{ ($ruangan->jurusan_id == $js->id) ? 'selected' : ''}}>{{ $js->nama_jurusan }}</option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="form-group">
                 <label>Nama Ruangan</label>
                 <input type="text" name="name" class="form-control" value="{{ $ruangan->name }}" required="">
               </div>

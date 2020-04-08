@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Ruangan;
+use App\Jurusan;
 
 class RuanganController extends Controller
 {
@@ -14,11 +15,13 @@ class RuanganController extends Controller
      */
     public function index(Request $request)
     {
+        $jurusan = Jurusan::all();
+
         $ruangan = Ruangan::when($request->search, function($query) use($request){
             $query->where('name', 'LIKE', '%'.$request->search);
         })->paginate(4);
 
-        return view('ruangan.index', compact('ruangan'));
+        return view('ruangan.index', compact('ruangan', 'jurusan'));
     }
 
     /**
@@ -28,7 +31,8 @@ class RuanganController extends Controller
      */
     public function create()
     {
-        return view('ruangan.create');
+        $jurusan = Jurusan::all();
+        return view('ruangan.create', compact('jurusan'));
     }
 
     /**
@@ -39,7 +43,10 @@ class RuanganController extends Controller
      */
     public function store(Request $request)
     {
-        Ruangan::create(['name' => $request->name]);
+        Ruangan::create([
+            'jurusan_id' => $request->jurusan_id,
+            'name' => $request->name
+        ]);
         
         return redirect()->route('ruangan.index');
     }
@@ -63,9 +70,10 @@ class RuanganController extends Controller
      */
     public function edit($id)
     {
+        $jurusan = Jurusan::all();
         $ruangan = Ruangan::find($id);
 
-        return view('ruangan.edit', compact('ruangan'));
+        return view('ruangan.edit', compact('ruangan', 'jurusan'));
     }
 
     /**
@@ -77,7 +85,10 @@ class RuanganController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Ruangan::whereId($id)->update(['name' => $request->name]);
+        Ruangan::whereId($id)->update([
+            'jurusan_id' => $request->jurusan_id,
+            'name' => $request->name
+        ]);
 
         return redirect()->route('ruangan.index');
     }

@@ -21,9 +21,27 @@
             <form action="{{ route('barang.store') }}" method="POST" enctype="multipart/form-data">
               @csrf
               <div class="form-group">
+                <label>Ruangan</label><br>
+                  <select name="ruangan_id" class="form-control" required="">
+                    @foreach($ruangan as $rg)
+                    <option value="{{$rg->id}}">{{$rg->name}}</option>
+                    @endforeach
+                  </select> 
+              </div>
+              <div class="form-group">
                 <label>Nama Barang</label>
                 <input type="text" name="name" class="form-control" required="">
               </div>
+              <div class="form-group">
+                  <label>Total Barang</label>
+                  <input name="total" type="number" min="1" class="form-control" id="inputTotal" placeholder="Total Barang" required="">
+              </div>
+              <div class="form-group">
+                  <label>Barang Rusak</label>
+                  <input name="broken" type="number" min="0" class="form-control" id="inputBroken" placeholder="Barang Rusak" required="">
+              </div>
+                  <input type="hidden" name="created_by" value="{{auth()->user()->id}}">
+              <br>
               <div class="form-group">
                 <button type="submit" class="btn btn-primary">SAVE</button>
               </div>

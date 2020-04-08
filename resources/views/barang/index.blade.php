@@ -23,17 +23,24 @@
               <button type="button" class="btn btn-info">All Data</button>
             </a>
           </div>
+          @if(auth()->user()->role == 'admin')
           <div class="card-header">
             <a href="{{ route('barang.create') }}">
               <button type="button" class="btn btn-primary">Add New</button>
             </a>
           </div>
+          @endif
           <div class="card-body">
             <table class="table table-bordered">
               <thead>
                 <tr>
                   <th scope="col">No</th>
+                  <th scope="col">Ruangan</th>
                   <th scope="col">Nama Barang</th>
+                  <th scope="col">Total Barang</th>
+                  <th scope="col">Barang Rusak</th>
+                  <th scope="col">Dibuat</th>
+                  <th scope="col">Diupdate</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
@@ -41,17 +48,35 @@
                @forelse($barang as $br => $hasil)
                 <tr>
                   <td>{{ $br + $barang->firstitem() }}</td>
+                  <td>{{ $hasil->ruangan->name }}</td>
                   <td>{{ $hasil->name }}</td>
+                  <td>{{ $hasil->total }}</td>
+                  <td>{{ $hasil->broken }}</td>
+                  <td>
+                    @foreach($user as $ur)
+                        @if($ur->id == $hasil->created_by)
+                          {{ $ur->name }}
+                        @endif
+                      @endforeach
+                  </td>
+                  <td>
+                    @foreach($user as $ur)
+                        @if($ur->id == $hasil->updated_by)
+                          {{ $ur->name }}
+                        @endif
+                      @endforeach
+                  </td>
                   <td>
                     <a href="{{ route('barang.edit', ['id' => $hasil->id]) }}">
                       <button type="button" class="btn btn-sm btn-info">Edit</button>
                     </a>
-
+                    @if(auth()->user()->role == 'admin')
                     <a href="{{ route('barang.delete', ['id' => $hasil->id]) }}"
                       onclick="return confirm('Delete data?');" 
                       >
                       <button type="button" class="btn btn-sm btn-danger">Hapus</button>
                     </a>
+                    @endif
                   </td>
                 </tr>
                @empty

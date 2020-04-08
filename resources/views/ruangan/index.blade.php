@@ -33,6 +33,7 @@
               <thead>
                 <tr>
                   <th scope="col">No</th>
+                  <th scope="col">Nama Jurusan</th>
                   <th scope="col">Nama Ruangan</th>
                   <th scope="col">Action</th>
                 </tr>
@@ -41,6 +42,7 @@
                @forelse($ruangan as $rg => $hasil)
                 <tr>
                   <td>{{ $rg + $ruangan->firstitem() }}</td>
+                  <td>{{ $hasil->jurusan->nama_jurusan }}</td>
                   <td>{{ $hasil->name }}</td>
                   <td>
                     <a href="{{ route('ruangan.edit', ['id' => $hasil->id]) }}">
