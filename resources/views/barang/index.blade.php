@@ -90,6 +90,8 @@
             {{ $barang->total() }}
             <h6 class="page-title">Page Number</h6>
                         {{ $barang->links() }}
+
+            <a href="/export_excel_barang" class="btn btn-success my-3 pull-right" style="background-color: #6c9626;" target="_blank">EXPORT EXCEL</a>
           </div>
           <div class="card-footer text-right">
             <nav class="d-inline-block">

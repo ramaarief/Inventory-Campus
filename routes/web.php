@@ -46,6 +46,8 @@ Route::group(['middleware' => 'auth'], function(){
 
 	Route::get('jurusan/{id}', ['as' => 'jurusan.delete', 'uses' => 'JurusanController@destroy']);
 
+	Route::get('/export_excel_jurusan', "JurusanController@export_excel");
+
 	//Route tabel ruangan
 	Route::get('ruangan', ['as' => 'ruangan.index', 'uses' => 'RuanganController@index']);
 
@@ -71,6 +73,8 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::patch('barang/{id}', ['as' => 'barang.update', 'uses' => 'BarangController@update']);
 
 	Route::get('barang/{id}', ['as' => 'barang.delete', 'uses' => 'BarangController@destroy']);
+
+	Route::get('/export_excel_barang', "BarangController@export_excel");
 });
 
 Route::get('dashboard', function () {

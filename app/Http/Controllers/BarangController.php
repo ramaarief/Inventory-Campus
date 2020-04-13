@@ -7,6 +7,9 @@ use App\Barang;
 use App\Ruangan;
 use App\User;
 
+use App\Exports\BarangExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 class BarangController extends Controller
 {
     /**
@@ -112,5 +115,10 @@ class BarangController extends Controller
     {
         Barang::whereId($id)->delete();
         return redirect()->route('barang.index');
+    }
+
+    public function export_excel(Request $request)
+    {
+        return Excel::download(new BarangExport, 'barang-'.date("Y-m-d").'.xlsx');
     }
 }
