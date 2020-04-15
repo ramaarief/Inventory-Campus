@@ -12,10 +12,16 @@ class BarangSeeder extends Seeder
      */
     public function run()
     {
-        $listBarang = ['Meja', 'Papan_Tulis', 'Spidol', 'Proyektor', 'LCD'];
+        $listBarang = [
+            ['ruangan_id' => '1',  'name' => 'Meja',         'total' => '25', 'broken' => '3',  'created_by' => '1', 'updated_by' => '1'],
+            ['ruangan_id' => '3',  'name' => 'Papan_Tulis',  'total' => '2',  'broken' => '0',  'created_by' => '1', 'updated_by' => '2'],
+            ['ruangan_id' => '5',  'name' => 'Spidol',       'total' => '3',  'broken' => '1',  'created_by' => '1', 'updated_by' => '1'],
+            ['ruangan_id' => '2',  'name' => 'Proyektor',    'total' => '1',  'broken' => '0',  'created_by' => '1', 'updated_by' => '1'],
+            ['ruangan_id' => '4',  'name' => 'LCD',          'total' => '2',  'broken' => '0',  'created_by' => '1', 'updated_by' => '2']
+        ];
 
         foreach ($listBarang as $barang) {
-        	Barang::create(['name' => $barang]);
+        	Barang::create($barang);
         }
     }
 }

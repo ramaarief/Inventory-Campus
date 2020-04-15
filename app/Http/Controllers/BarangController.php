@@ -23,7 +23,10 @@ class BarangController extends Controller
         $user = User::all();
 
         $barang = Barang::when($request->search, function($query) use($request){
-            $query->where('name', 'LIKE', '%'.$request->search);
+            $query->join('ruangan', 'barang.ruangan_id', '=', 'ruangan.id')
+                  ->where('ruangan.name', 'LIKE', '%'.$request->search.'%')
+                  ->orwhere('barang.name', 'LIKE', '%'.$request->search.'%')
+                  ->select('barang.*', 'ruangan.name AS ruangan_name');
         })->paginate(4);
 
         return view('barang.index', compact('barang', 'ruangan', 'user'));

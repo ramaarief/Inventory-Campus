@@ -12,10 +12,21 @@ class RuanganSeeder extends Seeder
      */
     public function run()
     {
-        $listRuangan = ['R_001', 'R_002', 'R_003', 'R_004', 'R_005'];
+        $listRuangan = [
+            ['jurusan_id' => '1',   'name' => 'TI-001'],
+            ['jurusan_id' => '1',   'name' => 'TI-004'],
+
+            ['jurusan_id' => '4',   'name' => 'HK-238'],
+
+            ['jurusan_id' => '10',  'name' => 'PB-012'],
+
+            ['jurusan_id' => '13',  'name' => 'SP-055'],
+
+            ['jurusan_id' => '15',  'name' => 'KM-023']
+        ];
 
         foreach ($listRuangan as $ruangan) {
-        	Ruangan::create(['name' => $ruangan]);
+        	Ruangan::create($ruangan);
         }
     }
 }

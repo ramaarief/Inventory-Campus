@@ -17,7 +17,7 @@ class FakultasController extends Controller
         //pagination
         // numbering
         $fakultas = Fakultas::when($request->search, function($query) use($request){
-            $query->where('name', 'LIKE', '%'.$request->search);
+            $query->where('name', 'LIKE', '%'.$request->search.'%');
         })->paginate(5);
 
         return view('fakultas.index', compact('fakultas'));

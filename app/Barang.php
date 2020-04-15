@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Ruangan;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Barang extends Model
@@ -13,5 +14,13 @@ class Barang extends Model
     public function ruangan()
     {
     	return $this->belongsTo(Ruangan::class, 'ruangan_id');
+    }
+    public function create_by()
+    {
+    	return $this->belongsTo(User::class, 'created_by', 'id');
+    }
+    public function update_by()
+    {
+    	return $this->belongsTo(User::class, 'updated_by', 'id');
     }
 }

@@ -12,6 +12,6 @@ class Fakultas extends Model
 
     public function jurusan()
     {
-        return $this->belongsTo('App\Jurusan', 'name', 'fakultas_id');
+        return $this->hasMany(Jurusan::class, 'name', 'fakultas_id');
     }
 }

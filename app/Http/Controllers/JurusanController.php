@@ -21,8 +21,8 @@ class JurusanController extends Controller
         $fakultas = Fakultas::all();
         $jurusan = Jurusan::when($request->search, function($query) use($request){
             $query->join('fakultas', 'jurusan.fakultas_id', '=', 'fakultas.id')
-                  ->where('fakultas.name', 'LIKE', '%'.$request->search)
-                  ->select('jurusan.*', 'fakultas.name');
+                  ->where('fakultas.name', 'LIKE', '%'.$request->search.'%')
+                  ->select('jurusan.*', 'fakultas.name AS fakultas_name');
         })->paginate(3);
 
         return view('jurusan.index', compact('jurusan', 'fakultas'));

@@ -5,7 +5,7 @@
   
   <div class="section-header">
     <h1>
-      Category <small>Edit Data</small>
+      Jurusan <small>Edit Data</small>
     </h1>
   </div>
 

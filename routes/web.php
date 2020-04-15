@@ -31,35 +31,36 @@ Route::group(['middleware' => 'auth'], function(){
 		Route::patch('fakultas/{id}', ['as' => 'fakultas.update', 'uses' => 'FakultasController@update']);
 
 		Route::get('fakultas/{id}', ['as' => 'fakultas.delete', 'uses' => 'FakultasController@destroy']);
+
+		//Route tabel jurusan
+		Route::get('jurusan', ['as' => 'jurusan.index', 'uses' => 'JurusanController@index']);
+
+		Route::get('jurusan/create', ['as' => 'jurusan.create', 'uses' => 'JurusanController@create']);
+
+		Route::post('jurusan', ['as' => 'jurusan.store', 'uses' => 'JurusanController@store']);
+
+		Route::get('jurusan/edit/{id}', ['as' => 'jurusan.edit', 'uses' => 'JurusanController@edit']);
+
+		Route::patch('jurusan/{id}', ['as' => 'jurusan.update', 'uses' => 'JurusanController@update']);
+
+		Route::get('jurusan/{id}', ['as' => 'jurusan.delete', 'uses' => 'JurusanController@destroy']);
+
+		Route::get('/export_excel_jurusan', "JurusanController@export_excel");
+
+		//Route tabel ruangan
+		Route::get('ruangan', ['as' => 'ruangan.index', 'uses' => 'RuanganController@index']);
+
+		Route::get('ruangan/create', ['as' => 'ruangan.create', 'uses' => 'RuanganController@create']);
+
+		Route::post('ruangan', ['as' => 'ruangan.store', 'uses' => 'RuanganController@store']);
+
+		Route::get('ruangan/edit/{id}', ['as' => 'ruangan.edit', 'uses' => 'RuanganController@edit']);
+
+		Route::patch('ruangan/{id}', ['as' => 'ruangan.update', 'uses' => 'RuanganController@update']);
+
+		Route::get('ruangan/{id}', ['as' => 'ruangan.delete', 'uses' => 'RuanganController@destroy']);
+
 	});
-
-	//Route tabel jurusan
-	Route::get('jurusan', ['as' => 'jurusan.index', 'uses' => 'JurusanController@index']);
-
-	Route::get('jurusan/create', ['as' => 'jurusan.create', 'uses' => 'JurusanController@create']);
-
-	Route::post('jurusan', ['as' => 'jurusan.store', 'uses' => 'JurusanController@store']);
-
-	Route::get('jurusan/edit/{id}', ['as' => 'jurusan.edit', 'uses' => 'JurusanController@edit']);
-
-	Route::patch('jurusan/{id}', ['as' => 'jurusan.update', 'uses' => 'JurusanController@update']);
-
-	Route::get('jurusan/{id}', ['as' => 'jurusan.delete', 'uses' => 'JurusanController@destroy']);
-
-	Route::get('/export_excel_jurusan', "JurusanController@export_excel");
-
-	//Route tabel ruangan
-	Route::get('ruangan', ['as' => 'ruangan.index', 'uses' => 'RuanganController@index']);
-
-	Route::get('ruangan/create', ['as' => 'ruangan.create', 'uses' => 'RuanganController@create']);
-
-	Route::post('ruangan', ['as' => 'ruangan.store', 'uses' => 'RuanganController@store']);
-
-	Route::get('ruangan/edit/{id}', ['as' => 'ruangan.edit', 'uses' => 'RuanganController@edit']);
-
-	Route::patch('ruangan/{id}', ['as' => 'ruangan.update', 'uses' => 'RuanganController@update']);
-
-	Route::get('ruangan/{id}', ['as' => 'ruangan.delete', 'uses' => 'RuanganController@destroy']);
 
 	//Route tabel barang
 	Route::get('barang', ['as' => 'barang.index', 'uses' => 'BarangController@index']);
@@ -75,12 +76,9 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('barang/{id}', ['as' => 'barang.delete', 'uses' => 'BarangController@destroy']);
 
 	Route::get('/export_excel_barang', "BarangController@export_excel");
+
+	//Route Dashboard
+	Route::get('/', 'DashboardController@index')->name('/');
+
 });
 
-Route::get('dashboard', function () {
-	return view('dashboard.index');
-})->name('dashboard');
-
-Route::get('/', function () {
-    return view('fakultas.index');
-});

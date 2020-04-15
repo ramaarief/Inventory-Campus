@@ -13,7 +13,7 @@
           <div class="card-header">
             <form method="GET" class="form-inline">
               <div class="form-group">
-                <input type="text" name="search" class="form-control" placeholder="Search" value="{{ request()->get('search') }}">
+                <input type="text" name="search" class="form-control" title="Cari berdasarkan nama ruangan / nama barang" placeholder="Search" value="{{ request()->get('search') }}">
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-primary">Search</button>
