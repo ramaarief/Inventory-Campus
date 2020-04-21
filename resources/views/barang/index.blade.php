@@ -39,6 +39,7 @@
                   <th scope="col">Nama Barang</th>
                   <th scope="col">Total Barang</th>
                   <th scope="col">Barang Rusak</th>
+                  <th scope="col">Photo</th>
                   <th scope="col">Dibuat</th>
                   <th scope="col">Diupdate</th>
                   <th scope="col">Action</th>
@@ -52,6 +53,9 @@
                   <td>{{ $hasil->name }}</td>
                   <td>{{ $hasil->total }}</td>
                   <td>{{ $hasil->broken }}</td>
+                  <td>
+                    <img src="{{ asset('images/'.$hasil->photo) }}" id="showgambar" style="max-width:200px;max-height:200px;" />
+                  </td>
                   <td>
                     @foreach($user as $ur)
                         @if($ur->id == $hasil->created_by)

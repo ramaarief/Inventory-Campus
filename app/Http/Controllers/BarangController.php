@@ -27,7 +27,7 @@ class BarangController extends Controller
                   ->where('ruangan.name', 'LIKE', '%'.$request->search.'%')
                   ->orwhere('barang.name', 'LIKE', '%'.$request->search.'%')
                   ->select('barang.*', 'ruangan.name AS ruangan_name');
-        })->paginate(4);
+        })->paginate(5);
 
         return view('barang.index', compact('barang', 'ruangan', 'user'));
     }
@@ -51,11 +51,23 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'ruangan_id' => 'required|max:20',
+            'name' => 'required|max:255',
+            'total' => 'required|integer|min:1',
+            'broken' => 'required|integer|min:0',
+            'photo' => 'required|image|mimes:jpeg,png,jpg|max:4096',
+        ]);
+
+        $photoName = 'barang-'.date('Ymdhis').'.'.$request->photo->getClientOriginalExtension();
+        $request->photo->move('images', $photoName);
+
         Barang::create([
             'ruangan_id' => $request->ruangan_id,
             'name' => $request->name,
             'total' => $request->total,
             'broken' => $request->broken,
+            'photo' => $photoName,
             'created_by' => $request->created_by
         ]);
         
@@ -96,14 +108,30 @@ class BarangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Barang::whereId($id)->update([
-            'ruangan_id' => $request->ruangan_id,
-            'name' => $request->name,
-            'total' => $request->total,
-            'broken' => $request->broken,
-            'created_by' => $request->created_by,
-            'updated_by' => $request->updated_by
+        $validatedData = $request->validate([
+            'ruangan_id' => 'required|max:20',
+            'name' => 'required|max:255',
+            'total' => 'required|integer|min:1',
+            'broken' => 'required|integer|min:0',
+            'photo' => 'image|mimes:jpeg,png,jpg|max:4096',
         ]);
+        
+        $barang = Barang::find($id);
+        $barang->ruangan_id = $request['ruangan_id'];
+        $barang->name = $request['name'];
+        $barang->total = $request['total'];
+        $barang->broken = $request['broken'];
+
+        if( $request->photo){
+            $photoName = 'barang-'.date('Ymdhis').'.'.$request->photo->getClientOriginalExtension();
+            $request->photo->move('images', $photoName);
+            $barang->photo = $photoName;
+        }
+
+        $barang->created_by = $request['created_by'];
+        $barang->updated_by = $request['updated_by'];
+        
+        $barang->update();
 
         return redirect()->route('barang.index');
     }

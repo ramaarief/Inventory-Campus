@@ -20,12 +20,21 @@
           </a>
           </div>
           <div class="card-body">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form action="{{ route('barang.update', ['barang' => $barang->id]) }}" method="post" enctype="multipart/form-data">
               @method('patch')
               @csrf
               <div class="form-group">
                 <label>Ruangan</label><br>
-                <select name="ruangan_id" class="form-control" required="">
+                <select name="ruangan_id" class="form-control">
                   @foreach($ruangan as $rg)
                   <option value="{{ $rg->id }}" {{ ($barang->ruangan_id == $rg->id) ? 'selected' : ''}}>{{ $rg->name }}</option>
                   @endforeach
@@ -33,15 +42,20 @@
               </div>   
               <div class="form-group">
                 <label>Nama Barang</label>
-                <input type="text" name="name" class="form-control" value="{{ $barang->name }}" required="">
+                <input type="text" name="name" class="form-control" value="{{ $barang->name }}">
               </div>
               <div class="form-group">
                 <label>Total Barang</label>
-                <input type="number" min="1" name="total" class="form-control" value="{{ $barang->total }}">
+                <input type="number" name="total" class="form-control" value="{{ $barang->total }}">
               </div>
               <div class="form-group">
                 <label>Barang Rusak</label>
-                <input type="number" min="0" name="broken" class="form-control" value="{{ $barang->broken }}">
+                <input type="number" name="broken" class="form-control" value="{{ $barang->broken }}">
+              </div>
+              <div class="form-group">
+                <label for="photo">Upload Photo</label><br>
+                <figcaption class="figure-caption">{{ $barang->photo }}</figcaption><br>
+                <input type="file" name="photo" accept=".jpg, .png, .jpeg">
               </div>
                 <input type="hidden" name="created_by" value="{{ $barang->created_by }}">
                 <input type="hidden" name="updated_by" value="{{auth()->user()->id}}">
