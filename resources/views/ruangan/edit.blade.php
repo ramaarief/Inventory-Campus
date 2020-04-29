@@ -20,11 +20,20 @@
           </a>
           </div>
           <div class="card-body">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form action="{{ route('ruangan.update', ['ruangan' => $ruangan->id]) }}" method="post" enctype="multipart/form-data">
               @method('patch')
               @csrf   
               <div class="form-group">
-                <select name="jurusan_id" class="form-control" required="">
+                <select name="jurusan_id" class="form-control">
                   @foreach($jurusan as $js)
                   <option value="{{ $js->id }}" {{ ($ruangan->jurusan_id == $js->id) ? 'selected' : ''}}>{{ $js->nama_jurusan }}</option>
                   @endforeach
@@ -32,7 +41,7 @@
               </div>
               <div class="form-group">
                 <label>Nama Ruangan</label>
-                <input type="text" name="name" class="form-control" value="{{ $ruangan->name }}" required="">
+                <input type="text" name="name" class="form-control" value="{{ $ruangan->name }}">
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-primary">SAVE</button>

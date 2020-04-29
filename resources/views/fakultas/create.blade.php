@@ -18,11 +18,20 @@
           </a>
           </div>
           <div class="card-body">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form action="{{ route('fakultas.store') }}" method="POST" enctype="multipart/form-data">
               @csrf
               <div class="form-group">
                 <label>Nama Fakultas</label>
-                <input type="text" name="name" class="form-control" required="">
+                <input type="text" name="name" class="form-control">
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-primary">SAVE</button>

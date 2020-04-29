@@ -47,6 +47,11 @@ class JurusanController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'fakultas_id' => 'required|max:20',
+            'name' => 'required|max:50'
+        ]);
+
         Jurusan::create([
             'fakultas_id' => $request->fakultas_id,
             'nama_jurusan' => $request->name
@@ -89,6 +94,11 @@ class JurusanController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'fakultas_id' => 'required|max:20',
+            'name' => 'required|max:50'
+        ]);
+        
         Jurusan::whereId($id)->update([
             'fakultas_id' => $request->fakultas_id,
             'nama_jurusan' => $request->name

@@ -46,6 +46,11 @@ class RuanganController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'jurusan_id' => 'required|max:20',
+            'name' => 'required|max:255'
+        ]);
+
         Ruangan::create([
             'jurusan_id' => $request->jurusan_id,
             'name' => $request->name
@@ -88,6 +93,11 @@ class RuanganController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'jurusan_id' => 'required|max:20',
+            'name' => 'required|max:255'
+        ]);
+        
         Ruangan::whereId($id)->update([
             'jurusan_id' => $request->jurusan_id,
             'name' => $request->name

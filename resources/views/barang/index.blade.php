@@ -54,7 +54,9 @@
                   <td>{{ $hasil->total }}</td>
                   <td>{{ $hasil->broken }}</td>
                   <td>
-                    <img src="{{ asset('images/'.$hasil->photo) }}" id="showgambar" style="max-width:200px;max-height:200px;" />
+                    <center>
+                    <img src="{{ asset('images/'.$hasil->photo) }}" id="showgambar" style="max-width:100px;max-height:100px;" />
+                    </center>
                   </td>
                   <td>
                     @foreach($user as $ur)

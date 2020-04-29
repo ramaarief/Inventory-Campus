@@ -18,11 +18,20 @@
           </a>
           </div>
           <div class="card-body">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form action="{{ route('jurusan.store') }}" method="POST" enctype="multipart/form-data">
               @csrf
               <div class="form-group">
                 <label>Nama Fakultas</label>
-                <select name="fakultas_id" class="form-control" required="">
+                <select name="fakultas_id" class="form-control">
                   @foreach($fakultas as $fs)
                   <option value="{{$fs->id}}">{{$fs->name}}</option>
                   @endforeach
@@ -30,7 +39,7 @@
               </div>
               <div class="form-group">
                 <label>Nama Jurusan</label>
-                <input type="text" name="name" class="form-control" required="">
+                <input type="text" name="name" class="form-control">
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-primary">SAVE</button>
