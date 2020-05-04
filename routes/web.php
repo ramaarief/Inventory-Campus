@@ -15,6 +15,9 @@ Auth::routes();
 
 Route::get('signout', ['as' => 'auth.signout', 'uses' => 'Auth\loginController@signout']);
 
+//Route Send Email
+Route::get('/sendemail','EmailController@send');
+
 Route::group(['middleware' => 'auth'], function(){
 
 	Route::group(['middleware' => 'admin.only'], function(){
