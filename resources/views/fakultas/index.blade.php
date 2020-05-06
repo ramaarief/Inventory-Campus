@@ -18,14 +18,19 @@
               <div class="form-group">
                 <button type="submit" class="btn btn-primary">Search</button>
               </div>
+              <div class="form-group">
+                <a href="{{ route('fakultas.index') }}" class="pull-right">
+                  <button type="button" class="btn btn-info">All Data</button>
+                </a>
+              </div>
             </form>
-            <a href="{{ route('fakultas.index') }}" class="pull-right">
-              <button type="button" class="btn btn-info">All Data</button>
-            </a>
           </div>
           <div class="card-header">
             <a href="{{ route('fakultas.create') }}">
               <button type="button" class="btn btn-primary">Add New</button>
+            </a>
+            <a type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#importExcel" style="color: #fff;">
+              Import Data
             </a>
           </div>
           <div class="card-body">
@@ -76,4 +81,32 @@
   </div>
 
 </section>
+
+  <!-- Modal -->
+    <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="importExcel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <form action="{{ route('fakultas.import') }}" method="POST" enctype="multipart/form-data">
+          @csrf
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Import Data Fakultas</h5>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                  <label for="file">File Excel</label><br>
+                  <input type="file" name="excel" accept=".xlsx, .xls" required="">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Import</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
 @endsection()
+
+
+

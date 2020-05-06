@@ -35,6 +35,8 @@ Route::group(['middleware' => 'auth'], function(){
 
 		Route::get('fakultas/{id}', ['as' => 'fakultas.delete', 'uses' => 'FakultasController@destroy']);
 
+		Route::post('fakultas_import', ['as' => 'fakultas.import', 'uses' => 'FakultasController@import']);
+
 		//Route tabel jurusan
 		Route::get('jurusan', ['as' => 'jurusan.index', 'uses' => 'JurusanController@index']);
 
