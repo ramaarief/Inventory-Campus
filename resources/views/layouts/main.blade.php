@@ -9,7 +9,7 @@
 	<!-- Basic Page Needs
 	================================================== -->
 	<meta charset="utf-8">
-	<title>Typefolio</title>
+	<title>UB Inventory</title>
 	<meta name="description" content=".">
 	<meta name="author" content="">
 	
@@ -46,6 +46,7 @@
 	<link rel="shortcut icon" href="images/favicon.ico">
 	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 
+	@laravelPWA
 </head>
 
 <body>

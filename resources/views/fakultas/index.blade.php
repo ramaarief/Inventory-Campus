@@ -29,11 +29,11 @@
             <a href="{{ route('fakultas.create') }}">
               <button type="button" class="btn btn-primary">Add New</button>
             </a>
-            <a type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#importExcel" style="color: #fff;">
+            <a class="btn btn-success my-3" data-toggle="modal" data-target="#importExcel" style="color: #fff;">
               Import Data
             </a>
           </div>
-          <div class="card-body">
+          <div class="card-body table-responsive">
             <table class="table table-bordered">
               <thead>
                 <tr>
