@@ -13,6 +13,8 @@
 
 Auth::routes();
 
+Route::get('index', ['as' => 'template.index', 'uses' => 'TemplateController@index']);
+
 Route::get('signout', ['as' => 'auth.signout', 'uses' => 'Auth\loginController@signout']);
 
 //Route Send Email
