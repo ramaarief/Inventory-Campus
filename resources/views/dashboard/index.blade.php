@@ -11,14 +11,14 @@
     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
       <div class="card card-statistic-1">
         <div class="card-icon bg-primary">
-          
+          <i class="far fa-building"></i>
         </div>
         <div class="card-wrap">
           <div class="card-header">
-            <h4>Total Fakultas</h4>
+            <h4>Fakultas</h4>
           </div>
           <div class="card-body">
-            {{$fakultas}}
+            {{$fakultas}} <br>
           </div>
         </div>
       </div>
@@ -26,11 +26,11 @@
     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
       <div class="card card-statistic-1">
         <div class="card-icon bg-danger">
-          
+          <i class="fas fa-graduation-cap"></i>
         </div>
         <div class="card-wrap">
           <div class="card-header">
-            <h4>Total Jurusan</h4>
+            <h4>Jurusan</h4>
           </div>
           <div class="card-body">
             {{$jurusan}}
@@ -41,11 +41,11 @@
     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
       <div class="card card-statistic-1">
         <div class="card-icon bg-warning">
-          
+          <i class="fas fa-school"></i>
         </div>
         <div class="card-wrap">
           <div class="card-header">
-            <h4>Total Ruangan</h4>
+            <h4>Ruangan</h4>
           </div>
           <div class="card-body">
             {{$ruangan}}
@@ -56,11 +56,11 @@
     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
       <div class="card card-statistic-1">
         <div class="card-icon bg-success">
-          
+          <i class="fas fa-shopping-bag"></i>
         </div>
         <div class="card-wrap">
           <div class="card-header">
-            <h4>Total Barang</h4>
+            <h4>Barang</h4>
           </div>
           <div class="card-body">
             {{$barang}}

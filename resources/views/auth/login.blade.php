@@ -13,8 +13,8 @@
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
 
-  <link rel="shortcut icon" href="images/ub.png">
-  <link rel="apple-touch-icon" href="images/ub.png">
+  <link rel="shortcut icon" href="{{ asset('images/icon.png') }}">
+  <link rel="apple-touch-icon" href="{{ asset('images/icon.png') }}">
 
   @laravelPWA
 </head>
