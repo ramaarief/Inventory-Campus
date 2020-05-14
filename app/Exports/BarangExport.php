@@ -14,13 +14,14 @@ class BarangExport implements FromCollection, WithHeadings, ShouldAutoSize
     */
     public function collection()
     {
-        return Barang::select('id', 'name', 'total', 'broken', 'created_by', 'updated_by', 'created_at', 'updated_at')->get();
+        return Barang::select('id', 'ruangan_id', 'name', 'total', 'broken', 'created_by', 'updated_by', 'created_at', 'updated_at')->get();
     }
 
     public function headings(): array
     {
         return [
             'ID',
+            'Ruangan Id',
             'Nama Barang',
             'Total',
             'Rusak',
