@@ -1,7 +1,9 @@
 <p align="center"><img src="https://raw.githubusercontent.com/ramaarief/tutorial_caker/master/icon.png" width="200"></p>
 
-<h2 align="center">Sistem Informasi Inventory Campus</h2>
-	<ul>
+<h2 align="center">SISTEM INFORMASI INVENTORY CAMPUS</h2>
+<p align="center">INVENTORY UB ADALAH WEB APLIKASI MANEJEMEN INVENTORY UB BERBASIS LARAVEL, DENGAN TUJUAN MENGETAHUI TOTAL BARANG SERTA TOTAL BARANG YANG RUSAK DALAM RUANGAN SETIAP FAKULTASI DI UNIVERSITAS BRAWIJAYA</p>
+
+    <ul>
     <p align="center"><img src="https://raw.githubusercontent.com/ramaarief/tutorial_caker/master/1.PNG"></p>
     <p align="center">Halaman Sign Up dan Login</p>
     <p align="center"><img src="https://raw.githubusercontent.com/ramaarief/tutorial_caker/master/6.PNG"></p>
